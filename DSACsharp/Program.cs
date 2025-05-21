@@ -1,2 +1,3 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using DSACsharp;
+
+Console.WriteLine(string.Join(", ", ArraysAndHashing.TwoSum([3, 6, 1, 8], 11)));
