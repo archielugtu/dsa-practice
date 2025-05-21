@@ -1,0 +1,30 @@
+# Build output folders
+bin/
+obj/
+
+# User-specific files
+*.user
+*.rsuser
+*.suo
+*.userprefs
+
+# VS Code settings: ignore personal settings but keep shared configs
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# NuGet packages folder (optional, if you don’t check in packages)
+packages/
+
+# Backup and temp files
+*.bak
+*.tmp
+*.temp
