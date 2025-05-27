@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace DSACsharp;
 
@@ -85,7 +86,6 @@ public static class ArraysAndHashing
 
   public static int[] TopKFrequent(int[] nums, int k)
   {
-
     var seen = new Dictionary<int, int>();
     foreach (var n in nums)
       seen[n] = seen.GetValueOrDefault(n, 0) + 1;
@@ -111,6 +111,31 @@ public static class ArraysAndHashing
           if (index == k) return res;
         }
       }
+    }
+    return res;
+  }
+
+  public static string Encode(IList<string> strs)
+  {
+    var res = new StringBuilder();
+    foreach (var str in strs)
+      res.Append($"{str.Length}#{str}");
+    return res.ToString();
+  }
+
+  public static List<string> Decode(string s)
+  {
+    var res = new List<string>();
+    int i = 0;
+    while (i < s.Length)
+    {
+      int j = i;
+      while (s[j] != '#')
+        j++;
+
+      var length = int.Parse(s.Substring(i, j - i));
+      res.Add(s.Substring(j + 1, length));
+      i = j + 1 + length;
     }
     return res;
   }
