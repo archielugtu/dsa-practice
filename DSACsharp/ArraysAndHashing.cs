@@ -139,4 +139,30 @@ public static class ArraysAndHashing
     }
     return res;
   }
+
+  public static int[] ProductExceptSelf(int[] nums)
+  {
+    /**
+      1, 2, 3, 4
+      prefix = 1, 1, 6, 24
+      postfix = 24, 12, 4, 1
+    */
+    var n = nums.Length;
+    var prefix = new int[nums.Length];
+    var postfix = new int[nums.Length];
+    var res = new int[nums.Length];
+
+    prefix[0] = 1;
+    postfix[n - 1] = 1;
+    for (int i = 1; i < nums.Length; i++)
+      prefix[i] = nums[i - 1] * prefix[i - 1];
+
+    for (int i = nums.Length - 2; i >= 0; i--)
+      postfix[i] = nums[i + 1] * postfix[i + 1];
+
+    for (int i = 0; i < nums.Length; i++)
+      res[i] = prefix[i] * postfix[i];
+
+    return res;
+  }
 }

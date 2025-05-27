@@ -6,3 +6,4 @@ Console.WriteLine(string.Join(", ", ArraysAndHashing.TopKFrequent([1, 1, 1, 2, 2
 var encodedStr = ArraysAndHashing.Encode(["neet", "33", "code"]);
 Console.WriteLine(encodedStr);
 Console.WriteLine(string.Join(", ", ArraysAndHashing.Decode(encodedStr)));
+Console.WriteLine(string.Join(", ", ArraysAndHashing.ProductExceptSelf([1, 2, 3, 4])));
