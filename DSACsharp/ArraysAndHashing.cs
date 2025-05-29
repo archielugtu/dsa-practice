@@ -165,4 +165,65 @@ public static class ArraysAndHashing
 
     return res;
   }
+
+  public static bool ValidSudoku(char[][] board)
+  {
+    /**
+      [["5","3",".",".","7",".",".",".","."]
+      ,["6",".",".","1","9","5",".",".","."]
+      ,[".","9","8",".",".",".",".","6","."]
+      ,["8",".",".",".","6",".",".",".","3"]
+      ,["4",".",".","8",".","3",".",".","1"]
+      ,["7",".",".",".","2",".",".",".","6"]
+      ,[".","6",".",".",".",".","2","8","."]
+      ,[".",".",".","4","1","9",".",".","5"]
+      ,[".",".",".",".","8",".",".","7","9"]]
+    */
+    var rows = new HashSet<char>[9];
+    var cols = new HashSet<char>[9];
+    var boxes = new HashSet<char>[9];
+
+    for (int i = 0; i < 9; i++)
+    {
+      rows[i] = [];
+      cols[i] = [];
+      boxes[i] = [];
+    }
+
+    for (int r = 0; r < board.Length; r++)
+    {
+      for (int c = 0; c < board[r].Length; c++)
+      {
+        var elem = board[r][c];
+        if (elem == '.') continue;
+
+        if (!rows[r].Add(elem) ||
+            !cols[c].Add(elem)) return false;
+
+        var box = (3 * (r / 3)) + (c / 3);
+        if (!boxes[box].Add(elem)) return false;
+      }
+    }
+    return true;
+  }
+  
+  public static char[][] ConvertStringArrayToCharArray(string[][] stringBoard)
+  {
+      int rows = stringBoard.Length;
+      int cols = stringBoard[0].Length;
+      char[][] charBoard = new char[rows][];
+
+      for (int i = 0; i < rows; i++)
+      {
+          charBoard[i] = new char[cols];
+          for (int j = 0; j < cols; j++)
+          {
+              // Assuming each string is a single character like "5" or "."
+              charBoard[i][j] = stringBoard[i][j][0];
+          }
+      }
+
+      return charBoard;
+  }
+
 }
