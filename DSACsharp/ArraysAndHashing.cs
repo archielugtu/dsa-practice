@@ -206,24 +206,43 @@ public static class ArraysAndHashing
     }
     return true;
   }
-  
+
   public static char[][] ConvertStringArrayToCharArray(string[][] stringBoard)
   {
-      int rows = stringBoard.Length;
-      int cols = stringBoard[0].Length;
-      char[][] charBoard = new char[rows][];
+    int rows = stringBoard.Length;
+    int cols = stringBoard[0].Length;
+    char[][] charBoard = new char[rows][];
 
-      for (int i = 0; i < rows; i++)
+    for (int i = 0; i < rows; i++)
+    {
+      charBoard[i] = new char[cols];
+      for (int j = 0; j < cols; j++)
       {
-          charBoard[i] = new char[cols];
-          for (int j = 0; j < cols; j++)
-          {
-              // Assuming each string is a single character like "5" or "."
-              charBoard[i][j] = stringBoard[i][j][0];
-          }
+        // Assuming each string is a single character like "5" or "."
+        charBoard[i][j] = stringBoard[i][j][0];
       }
+    }
 
-      return charBoard;
+    return charBoard;
   }
 
+  public static int LongestConsecutive(int[] nums)
+  {
+    var seen = new HashSet<int>(nums);
+    int longest = 0;
+    foreach (int n in nums)
+    {
+      //if starting num of consecutive
+      if (!seen.Contains(n - 1))
+      {
+        int length = 1;
+        while (seen.Contains(n + length))
+          length++;
+
+        longest = int.Max(longest, length);
+      }
+    }
+
+    return longest;
+  }
 }
